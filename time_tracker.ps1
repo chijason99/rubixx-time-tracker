@@ -71,15 +71,16 @@ function Calculate-Hours {
     )
     $expected_hours_per_day = 7.4
     $expected_hours = $hours.Length * $expected_hours_per_day
-    $delta = [Math]::Round([Math]::Abs($total_hours - $expected_hours), 2)
+    $delta = [Math]::Round($total_hours - $expected_hours, 2)
+    $absolute_delta = [Math]::Abs($delta)
 
     Write-Host "Expected hours: $expected_hours"
     Write-Host "Total hours: $total_hours"
 
     if ($delta -gt 0) {
-        Write-Host "Over by: $delta hours" -BackgroundColor Green
+        Write-Host "Over by: $absolute_delta hours" -BackgroundColor Green
     } elseif ($delta -lt 0) {
-        Write-Host "Under by: $delta hours" -BackgroundColor Red
+        Write-Host "Under by: $absolute_delta hours" -BackgroundColor Red
     } else {
         Write-Host "Exact hours worked"
     }
