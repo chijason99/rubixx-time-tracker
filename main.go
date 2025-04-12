@@ -49,8 +49,16 @@ const (
 func main() {
 	if err := run(); err != nil {
 		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+		waitForExit()
 		os.Exit(1)
 	}
+
+	waitForExit()
+}
+
+func waitForExit() {
+	fmt.Println("\nPress Enter to exit...")
+	fmt.Scanln() // Wait for user to press Enter
 }
 
 // run encapsulates the main program flow
